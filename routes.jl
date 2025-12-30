@@ -1,5 +1,6 @@
 using Genie.Router
-
-route("/") do
-  serve_static_file("welcome.html")
-end
+using InflationObservatory.WelcomesController
+#route("/") do
+#serve_static_file("welcome.html")
+#end
+route("/", WelcomesController.welcome)
