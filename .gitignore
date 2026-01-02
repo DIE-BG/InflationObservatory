@@ -9,7 +9,7 @@ sessions/*
 Manifest.toml
 .env
 .env.*
-
+tmp
 # Vagrant
 .vagrant
 Vagrantfile
