@@ -8,23 +8,15 @@
             <div class="w-full">
                 <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10">
                     <div class="lg:col-span-5">
-                        <div
-                            class="min-h-[60vh] rounded-xl bg-slate-100 ring-1 ring-black/5 flex items-center justify-center"
-                        >
-                            <span class="text-slate-500 font-medium"
-                                >Tabla de indicadores</span
-                            >
-                        </div>
+                        <%
+                        partial(path"app/resources/homes/views/partials/summary_modules/summary_table.jl.html")
+                        %>
                     </div>
 
                     <div class="lg:col-span-7">
-                        <div
-                            class="min-h-[60vh] rounded-xl bg-slate-100 ring-1 ring-black/5 flex items-center justify-center"
-                        >
-                            <span class="text-slate-500 font-medium"
-                                >Gráfica</span
-                            >
-                        </div>
+                        <%
+                        partial(path"app/resources/homes/views/partials/summary_modules/summary_plot.jl.html")
+                        %>
                     </div>
                 </div>
             </div>
