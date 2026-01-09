@@ -696,7 +696,7 @@ uuid = "d25df0c9-e2be-5dd7-82c8-3ad0b3e990b9"
 version = "0.1.5"
 
 [[deps.InflationObservatory]]
-deps = ["DrWatson", "StippleMakie"]
+deps = ["DrWatson", "GenieFramework", "StippleMakie"]
 path = "."
 uuid = "2aeb2352-4cf7-4e2d-8d24-b9a857b356f7"
 version = "0.1.0"
