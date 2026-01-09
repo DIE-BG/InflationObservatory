@@ -1,1 +1,0 @@
-"/home/m4wnn/.julia/juliaup/julia-1.12.3+0.x64.linux.gnu/bin/julia" --color=yes --depwarn=no --project=@. -q -- "%~dp0..\bootstrap.jl" -r %*
