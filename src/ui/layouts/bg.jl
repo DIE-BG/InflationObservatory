@@ -10,7 +10,7 @@ function BG_LAYOUT(;
         title::String = "Observatorio de Inflación",
         meta::D = Dict(),
         head_content::Union{AbstractString, Vector} = "",
-        core_theme::Bool = true
+        core_theme::Bool = false 
     ) where {D <: AbstractDict}
 
     tags = Genie.Renderers.Html.for_each(x ->
@@ -39,6 +39,16 @@ function BG_LAYOUT(;
 
         <style>
           [v-cloak] { display: none; }
+
+          /* Neutraliza el .container que inyecta Stipple/Quasar como root (para que mande tu wrapper de <main>) */
+          main > div > div.container[data-v-app] {
+            max-width: none;
+            width: 100%;
+            margin-left: 0;
+            margin-right: 0;
+            padding-left: 0;
+            padding-right: 0;
+          }
         </style>
 
         $(head_content isa AbstractString ? head_content : join(head_content, "\\n    "))
@@ -47,8 +57,10 @@ function BG_LAYOUT(;
       <body class="min-h-screen bg-white text-slate-900">
         <% partial(Renderer.filepath(joinpath("src", "ui", "layouts", "partials", "navbar.jl.html"))) %>
 
-        <main>
-          <% Stipple.page(model, partial = true, v__cloak = true, [Stipple.Genie.Renderer.Html.@yield], Stipple.@if(:isready); core_theme = $core_theme) %>
+        <main class="bg-white">
+          <div class="mx-auto w-full max-w-screen-2xl px-10">
+            <% Stipple.page(model, partial = true, v__cloak = true, [Stipple.Genie.Renderer.Html.@yield], Stipple.@if(:isready); core_theme = $core_theme) %>
+          </div>
         </main>
 
         <% partial(Renderer.filepath(joinpath("src", "ui", "layouts", "partials", "footer.jl.html"))) %>
