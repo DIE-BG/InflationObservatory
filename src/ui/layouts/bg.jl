@@ -58,7 +58,7 @@ function BG_LAYOUT(;
         <% partial(Renderer.filepath(joinpath("src", "ui", "layouts", "partials", "navbar.jl.html"))) %>
 
         <main class="bg-white">
-          <div class="mx-auto w-full max-w-screen-2xl px-10">
+          <div class="mx-auto w-full max-w-7xl px-6">
             <% Stipple.page(model, partial = true, v__cloak = true, [Stipple.Genie.Renderer.Html.@yield], Stipple.@if(:isready); core_theme = $core_theme) %>
           </div>
         </main>
