@@ -1,0 +1,30 @@
+<!-- Sección Resumen -->
+<section class="bg-white">
+    <div class="py-16">
+        <div
+            id="resumen"
+            class="scroll-mt-20 rounded-2xl bg-white shadow-lg ring-1 ring-black/5 p-10"
+        >
+            <!-- Encabezado de sección -->
+            <div class="mb-10">
+                <h2 class="text-2xl font-semibold tracking-tight text-slate-900">
+                    Resumen
+                </h2>
+                <p class="mt-2 text-sm text-slate-600">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sunt, laboriosam! Delectus ipsum quo a animi optio vitae repellendus magni, qui hic provident dicta magnam, quos laudantium ab labore officiis atque!
+                </p>
+            </div>
+
+            <!-- Contenido -->
+            <div class="grid grid-cols-12 gap-10">
+                <div class="col-span-5">
+                    <% partial(srcdir("apps", "Landing", "components", "summary", "summary_table.jl.html"); context = @__MODULE__) %>
+                </div>
+
+                <div class="col-span-7">
+                    <% partial(srcdir("apps", "Landing", "components", "summary", "summary_plot.jl.html"); context = @__MODULE__) %>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
