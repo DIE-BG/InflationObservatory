@@ -59,8 +59,6 @@ in the correct route. We don't define the route here because we prefer to keep a
 definitions in a single file.
 """
 function main(r::AbstractString)
-    WGLMakie.Page()
-    global model = @init MakieDemo
     return route(r) do
         WGLMakie.Page()
         global model = @init MakieDemo
