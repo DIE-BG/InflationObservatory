@@ -1,8 +1,8 @@
 # This file is machine-generated - editing it directly is not advised
 
-julia_version = "1.12.3"
+julia_version = "1.12.4"
 manifest_format = "2.0"
-project_hash = "1b3e51daf1e6401e7276f5f588f3ee68b230721f"
+project_hash = "d6c6690c84428b0f499b6470c649427051fdbdb0"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -111,6 +111,18 @@ git-tree-sha1 = "389ad5c84de1ae7cf0e28e381131c98ea87d54fc"
 uuid = "fa961155-64e5-5f13-b03f-caf6b980ea82"
 version = "0.5.0"
 
+[[deps.CPIDataBase]]
+deps = ["AbstractTrees", "DataFrames", "Dates", "PrettyTables", "Printf", "Statistics"]
+git-tree-sha1 = "b57fa2875310d17fb090fddc180ee17642fd84b4"
+uuid = "bc2aee9a-d1f8-4cce-8750-9c1afc923989"
+version = "0.6.25"
+
+[[deps.CPIDataGT]]
+deps = ["CPIDataBase", "CSV", "DataFrames", "Dates", "JLD2", "Reexport", "Scratch"]
+git-tree-sha1 = "68f46cab65426bb4f98e001688a3b6be8d7acd82"
+uuid = "39a16359-57f0-4aba-960c-77dbb3b4d29c"
+version = "0.7.2"
+
 [[deps.CRC32c]]
 uuid = "8bf52ea8-c179-5cab-976a-9e18b702a9bc"
 version = "1.11.0"
@@ -132,6 +144,12 @@ deps = ["Tokenize"]
 git-tree-sha1 = "0157e592151e39fa570645e2b2debcdfb8a0f112"
 uuid = "00ebfdb7-1f24-5e51-bd34-a7502290713f"
 version = "3.4.3"
+
+[[deps.CSV]]
+deps = ["CodecZlib", "Dates", "FilePathsBase", "InlineStrings", "Mmap", "Parsers", "PooledArrays", "PrecompileTools", "SentinelArrays", "Tables", "Unicode", "WeakRefStrings", "WorkerUtilities"]
+git-tree-sha1 = "deddd8725e5e1cc49ee205a1964256043720a6c3"
+uuid = "336ed68f-0bac-5ca0-87d4-7b16caf5d00b"
+version = "0.10.15"
 
 [[deps.Cairo_jll]]
 deps = ["Artifacts", "Bzip2_jll", "CompilerSupportLibraries_jll", "Fontconfig_jll", "FreeType2_jll", "Glib_jll", "JLLWrappers", "LZO_jll", "Libdl", "Pixman_jll", "Xorg_libXext_jll", "Xorg_libXrender_jll", "Zlib_jll", "libpng_jll"]
@@ -695,8 +713,14 @@ git-tree-sha1 = "d1b1b796e47d94588b3757fe84fbf65a5ec4a80d"
 uuid = "d25df0c9-e2be-5dd7-82c8-3ad0b3e990b9"
 version = "0.1.5"
 
+[[deps.InflationFunctions]]
+deps = ["CPIDataBase", "Dates", "RecipesBase", "SparseArrays", "Statistics", "StatsBase"]
+git-tree-sha1 = "ea73d037b00231a819ef07b88364f87300bf3cc6"
+uuid = "3d0454e0-948f-4743-b998-4d73da99f8a8"
+version = "0.5.4"
+
 [[deps.InflationObservatory]]
-deps = ["DrWatson", "GenieFramework", "StippleMakie"]
+deps = ["CPIDataGT", "DrWatson", "GenieFramework", "InflationFunctions", "Inoptic", "Mudie"]
 path = "."
 uuid = "2aeb2352-4cf7-4e2d-8d24-b9a857b356f7"
 version = "0.1.0"
@@ -719,6 +743,14 @@ version = "1.4.5"
     [deps.InlineStrings.weakdeps]
     ArrowTypes = "31f734f8-188a-4ce0-8406-c8a06bd891cd"
     Parsers = "69de0a69-1ddd-5017-9359-2bf0b02dc9f0"
+
+[[deps.Inoptic]]
+deps = ["CPIDataGT", "DataFrames", "InflationFunctions"]
+git-tree-sha1 = "4009b43e34654b63fad35868a4e7f1fe1e7c4d5d"
+repo-rev = "main"
+repo-url = "/home/m4wnn/Documents/GitHub/DIE-BG/Inoptic.jl"
+uuid = "8f5dd8e8-af9a-4b7e-898c-9283934a1a2b"
+version = "0.1.0"
 
 [[deps.IntelOpenMP_jll]]
 deps = ["Artifacts", "JLLWrappers", "LazyArtifacts", "Libdl"]
@@ -1101,13 +1133,19 @@ version = "0.3.4"
 
 [[deps.MozillaCACerts_jll]]
 uuid = "14a3606d-f60d-562e-9121-12d972cd8159"
-version = "2025.5.20"
+version = "2025.11.4"
 
 [[deps.MsgPack]]
 deps = ["Serialization"]
 git-tree-sha1 = "f5db02ae992c260e4826fe78c942954b48e1d9c2"
 uuid = "99f44e22-a591-53d1-9472-aa23ef4bd671"
 version = "1.2.1"
+
+[[deps.Mudie]]
+deps = ["Dates", "Makie", "Printf", "StringEncodings"]
+path = "/home/m4wnn/.julia/dev/Mudie"
+uuid = "4d8691f9-d7cd-4649-8446-b9e4aa9b174c"
+version = "0.2.1"
 
 [[deps.Netpbm]]
 deps = ["FileIO", "ImageCore", "ImageMetadata"]
@@ -1848,6 +1886,12 @@ git-tree-sha1 = "ed63baf56e42727459354b10d5d44ad931cf36e7"
 uuid = "276b4fcb-3e11-5398-bf8b-a0c2d153d008"
 version = "0.11.10"
 
+[[deps.WeakRefStrings]]
+deps = ["DataAPI", "InlineStrings", "Parsers"]
+git-tree-sha1 = "b1be2855ed9ed8eac54e5caff2afcdb442d52c23"
+uuid = "ea10d353-3f73-51f8-a26c-33c1cb351aa5"
+version = "1.4.2"
+
 [[deps.WebP]]
 deps = ["CEnum", "ColorTypes", "FileIO", "FixedPointNumbers", "ImageCore", "libwebp_jll"]
 git-tree-sha1 = "aa1ca3c47f119fbdae8770c29820e5e6119b83f2"
@@ -1865,6 +1909,11 @@ deps = ["LinearAlgebra", "SparseArrays"]
 git-tree-sha1 = "c1a7aa6219628fcd757dede0ca95e245c5cd9511"
 uuid = "efce3f68-66dc-5838-9240-27a6d6f5f9b6"
 version = "1.0.0"
+
+[[deps.WorkerUtilities]]
+git-tree-sha1 = "cd1659ba0d57b71a464a29e64dbc67cfe83d54e7"
+uuid = "76eceee3-57b5-4d4a-8e66-0e911cebbf60"
+version = "1.6.1"
 
 [[deps.XML2_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl", "Libiconv_jll", "Zlib_jll"]
