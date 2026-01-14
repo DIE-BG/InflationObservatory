@@ -1,26 +1,40 @@
-"""
-The main module for the Inflation Observatory application.
+# This file defines the entry point for the Genie web application.
 
-Each separate app is included from `src/apps/`. Each app exports a `main` function that
-receives a route string as input. After including an app, its `main` function is called
-with the desired route.
-"""
-module App
+
 
 using DrWatson
 @quickactivate :InflationObservatory
+@genietools
 
-# In this app we define the landing page. It also serves as an example of how to
-# structure additional apps.
-include(
-    srcdir("apps", "Landing", "app.jl")
-)
+
+# Our set of applications is a mix of Genie and StippleMakie apps. StippleMakie is used to create reactive Makie visualizations that are served through Genie.
+# Since Makie requires its own server for Bonito apps, we use a reverse proxy to serve both Genie and Makie apps on the same port. This functionality is provided by StippleMakie.
+startproxy()
+
+# Because our reactive models can be large, we disable model storage to improve performance.
+Stipple.enable_model_storage(false)
+
+
+
+# The landing page app is defined here. It also serves as an example of how to structure additional apps.
+include(srcdir("apps", "Landing", "app.jl"))
 Landing.main("/")
 
-# This app is the main Makie example adapted to out project organization structure.
-include(
-    srcdir("apps", "MakieExample", "app.jl")
-)
-MakieExample.main("/makie_example")
 
-end # module App
+# This app is the main Makie example, adapted to our project organization structure.
+include(srcdir("apps", "MakieExample", "app.jl"))
+route_bonito_app(
+    "/makie_example",
+    MakieExample.reactive_model,
+    MakieExample.ui
+)
+
+
+# In this example, we go a step further and make the Makie figure reactive.
+# We also show how to apply the `die_theme` from `Mudie.jl` to the reactive figure.
+include(srcdir("apps", "ReactiveMakieExample", "app.jl"))
+route_bonito_app(
+    "/reactive_makie_example",
+    ReactiveMakieExample.reactive_model,
+    ReactiveMakieExample.ui
+)
