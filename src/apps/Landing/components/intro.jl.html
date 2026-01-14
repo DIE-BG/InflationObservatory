@@ -1,0 +1,24 @@
+<!-- Sección Módulos -->
+<section class="bg-white">
+    <div class="py-16">
+        <div class="mb-10">
+            <h2 class="text-2xl font-semibold tracking-tight text-slate-900">
+                Módulos
+            </h2>
+            <p class="mt-2 text-sm text-slate-600">
+                Lorem ipsum dolor sit amet consectetur, adipisicing elit. Cum eos possimus impedit sequi animi ab, dolorem necessitatibus iusto ipsam tenetur mollitia nisi illo nostrum ipsum nulla culpa magnam. Non, veritatis.
+            </p>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Card Inflación Total -->
+            <% partial(srcdir("apps", "Landing", "components", "intro", "total_inflation.jl.html"); context = @__MODULE__) %>
+
+            <!-- Card Gastos Básicos -->
+            <% partial(srcdir("apps", "Landing", "components", "intro", "goods.jl.html"); context = @__MODULE__) %>
+
+            <!-- Card Inflación Subyacente -->
+            <% partial(srcdir("apps", "Landing", "components", "intro", "core_inflation.jl.html"); context = @__MODULE__) %>
+        </div>
+    </div>
+</section>
