@@ -2,7 +2,7 @@
 
 julia_version = "1.12.4"
 manifest_format = "2.0"
-project_hash = "d6c6690c84428b0f499b6470c649427051fdbdb0"
+project_hash = "baa1d78b7068077bd58ee77ef584a8f988b805ba"
 
 [[deps.AbstractFFTs]]
 deps = ["LinearAlgebra"]
@@ -157,6 +157,11 @@ git-tree-sha1 = "fde3bf89aead2e723284a8ff9cdf5b551ed700e8"
 uuid = "83423d85-b0ee-5818-9007-b63ccbeb887a"
 version = "1.18.5+0"
 
+[[deps.Chain]]
+git-tree-sha1 = "765487f32aeece2cf28aa7038e29c31060cb5a69"
+uuid = "8be319e6-bccf-4806-a6f7-6fae938471bc"
+version = "1.0.0"
+
 [[deps.ChainRulesCore]]
 deps = ["Compat", "LinearAlgebra"]
 git-tree-sha1 = "e4c6a16e77171a5f5e25e9646617ab1c276c5607"
@@ -303,6 +308,12 @@ deps = ["Compat", "DataAPI", "DataStructures", "Future", "InlineStrings", "Inver
 git-tree-sha1 = "d8928e9169ff76c6281f39a659f9bca3a573f24c"
 uuid = "a93c6f00-e57d-5684-b7b6-d8193f3e46c0"
 version = "1.8.1"
+
+[[deps.DataFramesMeta]]
+deps = ["Chain", "DataFrames", "MacroTools", "OrderedCollections", "PrettyTables", "Reexport", "TableMetadataTools"]
+git-tree-sha1 = "b0652fb7f3c094cf453bf22e699712a0bed9fc83"
+uuid = "1313f7d8-7da2-5740-9ea0-a2ca25f37964"
+version = "0.15.6"
 
 [[deps.DataStructures]]
 deps = ["Compat", "InteractiveUtils", "OrderedCollections"]
@@ -720,7 +731,7 @@ uuid = "3d0454e0-948f-4743-b998-4d73da99f8a8"
 version = "0.5.4"
 
 [[deps.InflationObservatory]]
-deps = ["CPIDataGT", "DrWatson", "GenieFramework", "InflationFunctions", "Inoptic", "Mudie"]
+deps = ["CPIDataGT", "DataFramesMeta", "DrWatson", "GenieFramework", "InflationFunctions", "Inoptic", "Mudie", "Reexport", "StippleMakie"]
 path = "."
 uuid = "2aeb2352-4cf7-4e2d-8d24-b9a857b356f7"
 version = "0.1.0"
@@ -747,8 +758,6 @@ version = "1.4.5"
 [[deps.Inoptic]]
 deps = ["CPIDataGT", "DataFrames", "InflationFunctions"]
 git-tree-sha1 = "4009b43e34654b63fad35868a4e7f1fe1e7c4d5d"
-repo-rev = "main"
-repo-url = "/home/m4wnn/Documents/GitHub/DIE-BG/Inoptic.jl"
 uuid = "8f5dd8e8-af9a-4b7e-898c-9283934a1a2b"
 version = "0.1.0"
 
@@ -1143,9 +1152,9 @@ version = "1.2.1"
 
 [[deps.Mudie]]
 deps = ["Dates", "Makie", "Printf", "StringEncodings"]
-path = "/home/m4wnn/.julia/dev/Mudie"
+git-tree-sha1 = "2b7b78705f59078761ce7dc44241a97024d6b9d3"
 uuid = "4d8691f9-d7cd-4649-8446-b9e4aa9b174c"
-version = "0.2.1"
+version = "0.3.1"
 
 [[deps.Netpbm]]
 deps = ["FileIO", "ImageCore", "ImageMetadata"]
@@ -1765,6 +1774,12 @@ version = "7.8.3+2"
 deps = ["Dates"]
 uuid = "fa267f1f-6049-4f14-aa54-33bafae1ed76"
 version = "1.0.3"
+
+[[deps.TableMetadataTools]]
+deps = ["DataAPI", "Dates", "TOML", "Tables", "Unitful"]
+git-tree-sha1 = "c0405d3f8189bb9a9755e429c6ea2138fca7e31f"
+uuid = "9ce81f87-eacc-4366-bf80-b621a3098ee2"
+version = "0.1.0"
 
 [[deps.TableTraits]]
 deps = ["IteratorInterfaceExtensions"]
