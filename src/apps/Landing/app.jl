@@ -7,13 +7,6 @@ module Landing
 using DrWatson
 @quickactivate :InflationObservatory
 
-# We have to load the GenieFramework with `@genietools` to use its web functionalities.
-using GenieFramework
-@genietools
-
-# We include the background layout for this app.
-include(srcdir("ui", "layouts", "bg.jl"))
-
 # the `model.jl` file contains the reactive logic for this app.
 include(joinpath(@__DIR__, "model.jl"))
 
