@@ -8,6 +8,7 @@ module InflationObservatory
 
 using Reexport
 @reexport using GenieFramework
+@reexport using HTTP
 @reexport using StippleMakie
 
 export BG_LAYOUT
