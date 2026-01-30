@@ -19,9 +19,6 @@ ts_df = DataFrame(
 )
 ts_df.x = datetime2rata.(ts_df.date)
 
-const DOWNLOAD_STATE = Dict{String, Tuple{Date,Date}}()
-const DOWNLOAD_LOCK  = ReentrantLock()
-
 # In the reactive model, we expose the Makie figure that will hold the plot
 # using `MakieFigure()`. Because this struct is mutable, we place our
 # reactive WGLMakie figure in `fig1.fig` directly when the figure is ready.
@@ -35,7 +32,7 @@ Create the example plot in the given MakieFigure.
 # Returns
 - The updated MakieFigure.
 """
-function example_plot!(mf::MakieFigure, token::String)
+function example_plot!(mf::MakieFigure)
     # Notice that we place our axis and components directly in the
     # figure's grid layout `mf.fig`. Since the figure is already
     # reactive, we simply populate it with the desired components.
@@ -57,10 +54,6 @@ function example_plot!(mf::MakieFigure, token::String)
     # Update the download state when the interval changes
     WGLMakie.lift(rs_h.interval) do dates
         Makie.xlims!(ax, datetime2rata.(dates)...)
-
-        lock(DOWNLOAD_LOCK) do
-            DOWNLOAD_STATE[token] = (dates[1], dates[2])
-        end
     end
 
     # We also place the reactive label in the layout.
@@ -69,37 +62,6 @@ function example_plot!(mf::MakieFigure, token::String)
     WGLMakie.DataInspector(ax)
     # Return the updated MakieFigure.
     return mf
-end
-
-# Function to create the png bytes for export
-# We need to create a separate function because the WGLMakie figure 
-# is not directly exportable.
-"""
-    export_fig_png_bytes!(d1::Date, d2::Date)
-
-Create a statick plot to export.
-
-# Arguments
-- `d1::Date`: start date.
-- `d2::Date`: end date.
-# Returns
-- The path of the figure that we might export.
-"""
-function export_fig_png_bytes(d1::Date, d2::Date)
-    die_theme
-
-    df = @subset(ts_df, :date .>= d1, :date .<= d2)
-
-    fig = Makie.Figure(size = (1200, 650))
-    ax = Makie.Axis(fig[1, 1], title = "Inflación Total Interanual")
-    tslines!(ax, df.date, df.infl)
-
-    # save to a temporary path
-    path = tempname() * ".png"
-    Makie.save(path, fig)
-
-    # return the path
-    return read(path)
 end
 
 # Now we need to define the reactive model for this app.
@@ -112,26 +74,31 @@ end
         MakieFigure()
     end
 
-    # Unique token to identify the download state
-    @private dl_token = randstring(20)
-
-    # URL for downloading the exported figure
-    @out dl_url = ""
 
     # As stated in the `Stipple.jl` documentation, we can only modify reactive variables
     # inside handler blocks.
     @onchange isready begin
         init_makiefigures(__model__)
-        dl_url = "/download/fig1?token=$(dl_token)"
-
-        # Initialize the download state
-        lock(DOWNLOAD_LOCK) do
-            DOWNLOAD_STATE[dl_token] = (ts_df.date[1], ts_df.date[end])
-        end
 
         # The viewport changes when the figure is ready to be written to.
         onready(fig1) do
-            example_plot!(fig1, dl_token)
+            example_plot!(fig1)
         end
+    end
+end
+
+# Finally, we define the event to export the current figure as PNG. The event
+# required the model to be already initialized.
+@event reactive_model :download_fig1_png begin
+    # Saving the state (includes xlims already updated with the slider)
+    # update=false to avoid resetting limits when saving.
+    path = tempname() * ".png"
+    try
+        WGLMakie.save(path, fig1.fig; update = false)
+        bytes = read(path)
+        download_binary(__model__, bytes, "export_example.png")
+    catch err
+        # Handle error (log it, notify user, etc.)
+        @error "Failed to export fig1.fig to PNG" exception = err
     end
 end

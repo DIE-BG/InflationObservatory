@@ -9,20 +9,17 @@
 
         <p class="mt-2 text-sm text-slate-600 leading-relaxed max-w-3xl">
           El ejemplo incluye una gráfica reactiva para visualizar datos y ajustar el rango de fechas.
-          El botón exporta a PNG generando una versión estática (una gráfica reactiva no se exporta directamente).
-          La descarga respeta el rango seleccionado y funciona para múltiples usuarios a la vez.
         </p>
       </div>
 
-      <div class="shrink-0 pt-0.5">
+      <div class="shrink-0 pt-0.5 flex gap-2">
+        <!-- Export del Figure reactivo -->
         <% btn("Descargar PNG",
-              type="a",
-              href = :dl_url,
-              target = "_blank",
+              @on(:click, :download_fig1_png),
               unelevated = true,
               nocaps = true,
               padding = "sm md",
-              style = "background-color:#00457f; color:white;") %>
+              style = "background-color:white; color:#00457f; border:1px solid #00457f;") %>
       </div>
     </div>
   </div>
