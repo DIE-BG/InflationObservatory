@@ -3,24 +3,24 @@ This module sets up the Makie example app for the Inflation Observatory project.
 It loads the reactive model and UI components for the app.
 """
 module FigureExportExample
-
 # DrWatson is used for project management and environment activation.
 using DrWatson
 @quickactivate :InflationObservatory
-
-using Genie.Router, Genie.Requests
-using HTTP
 
 # Load the reactive model for the Makie example app.
 include(srcdir("apps", "FigureExportExample", "model.jl"))
 
 # Load the UI layout for the Makie example app.
-include(srcdir("apps", "FigureExportExample", "ui.jl"))
-ui() = UI
+ui() = ParsedHTMLString(
+    Genie.Renderer.Html.template(
+        srcdir("apps", "FigureExportExample", "ui.jl.html");
+        context=@__MODULE__
+    )
+)
 
 # Define a route to download the exported figure as a PNG file.
 route("/download/fig1") do
-    token = getpayload(:token, "")  # query param ?token=...
+    token = Genie.Requests.getpayload(:token, "")  # query param ?token=...
     token == "" && return HTTP.Response(400, "Missing token")
 
     # Obtain the dates range

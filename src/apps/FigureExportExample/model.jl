@@ -7,7 +7,6 @@ using Mudie
 using DataFramesMeta
 using InflationFunctions
 using CPIDataGT
-using CairoMakie
 using Dates, Random
 
 # First, we load the CPI data for Guatemala and compute the year-on-year inflation rate.
@@ -91,13 +90,13 @@ function export_fig_png_bytes(d1::Date, d2::Date)
 
     df = @subset(ts_df, :date .>= d1, :date .<= d2)
 
-    fig = Figure(size = (1200, 650))
-    ax = Axis(fig[1, 1], title = "Inflación Total Interanual")
+    fig = Makie.Figure(size = (1200, 650))
+    ax = Makie.Axis(fig[1, 1], title = "Inflación Total Interanual")
     tslines!(ax, df.date, df.infl)
 
     # save to a temporary path
     path = tempname() * ".png"
-    CairoMakie.save(path, fig)
+    Makie.save(path, fig)
 
     # return the path
     return read(path)
