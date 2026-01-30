@@ -38,3 +38,12 @@ route_bonito_app(
     ReactiveMakieExample.reactive_model,
     ReactiveMakieExample.ui
 )
+
+
+# In this example, we go a step further exporting a reactive makie figure.
+include(srcdir("apps", "FigureExportExample", "app.jl"))
+route_bonito_app(
+    "/figure_export_example",
+    FigureExportExample.reactive_model,
+    FigureExportExample.ui
+)

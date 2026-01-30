@@ -8,7 +8,9 @@ module InflationObservatory
 
 using Reexport
 @reexport using GenieFramework
+@reexport using HTTP
 @reexport using StippleMakie
+@reexport using StippleDownloads
 
 export BG_LAYOUT
 # Export the BG layout for use in all applications.
