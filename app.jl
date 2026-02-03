@@ -20,7 +20,7 @@ Stipple.enable_model_storage(false)
 include(srcdir("apps", "Landing", "app.jl"))
 Landing.main("/")
 
-#=
+
 # This app is the main Makie example, adapted to our project organization structure.
 include(srcdir("apps", "MakieExample", "app.jl"))
 route_bonito_app(
@@ -47,7 +47,9 @@ route_bonito_app(
     FigureExportExample.reactive_model,
     FigureExportExample.ui
 )
-=#
+
+
+# This is the base layout for all our apps.
 include(srcdir("apps", "LayoutExample", "app.jl"))
 route_bonito_app(
     "/layout_example",
