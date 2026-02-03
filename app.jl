@@ -47,3 +47,10 @@ route_bonito_app(
     FigureExportExample.reactive_model,
     FigureExportExample.ui
 )
+
+include(srcdir("apps", "LayoutExample", "app.jl"))
+route_bonito_app(
+    "/layout_example",
+    LayoutExample.reactive_model,
+    LayoutExample.ui
+)
