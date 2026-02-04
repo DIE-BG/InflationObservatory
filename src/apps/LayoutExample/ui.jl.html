@@ -1,5 +1,10 @@
 <% partial(srcdir("apps", "LayoutExample", "views", "summary.jl.html"); context = @__MODULE__) %>
 
-<% partial(srcdir("apps", "LayoutExample", "views", "navbar.jl.html"); context = @__MODULE__) %>
+<% 
+  navbar_modules(
+    title = "Ejemplo de layout con Julia",
+    sections = ["seccion-1" => "Sección 1", "seccion-2" => "Sección 2", "seccion-3" => "Sección 3", "seccion-3" => "Sección 3"]
+  )
+%>
 
 <% partial(srcdir("apps", "LayoutExample", "views", "sections.jl.html"); context = @__MODULE__) %>
