@@ -48,6 +48,8 @@ route_bonito_app(
     FigureExportExample.ui
 )
 
+
+# This is the base layout for all our apps.
 include(srcdir("apps", "LayoutExample", "app.jl"))
 route_bonito_app(
     "/layout_example",
