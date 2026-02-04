@@ -12,10 +12,21 @@ using Reexport
 @reexport using StippleMakie
 @reexport using StippleDownloads
 
+###########################################################################
+# UI Components and Layouts
+###########################################################################
+# This are some useful functions for layout or custom components, including
+# the general website layout.
 export BG_LAYOUT
 # Export the BG layout for use in all applications.
 include(joinpath(@__DIR__, "ui", "layouts", "bg.jl"))
 
+export navbar_modules
+include(joinpath(@__DIR__, "ui", "components", "navbar_modules.jl"))
+
+###########################################################################
+# Route Helper for Bonito Apps
+###########################################################################
 export route_bonito_app
 """
     route_bonito_app(r::AbstractString, reactive_model, ui::Union{Function, AbstractString}; context = @__MODULE__, layout = BG_LAYOUT)
