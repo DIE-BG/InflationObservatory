@@ -1,0 +1,24 @@
+<% 
+    partial(
+        srcdir("apps", "TotalInflation", "views", "summary.jl.html");
+        context = @__MODULE__
+    )
+%>
+
+<%
+    navbar_modules(
+        title = "Inflación Total",
+        sections = [
+            "tendencias" => "Tendencias",
+            "sesgo" => "Sesgo",
+            "composicion" => "Composición",
+        ]
+    )
+%>
+
+<% 
+    partial(
+        srcdir("apps", "TotalInflation", "views", "sections.jl.html");
+        context = @__MODULE__
+    )
+%>

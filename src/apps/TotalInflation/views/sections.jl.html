@@ -1,0 +1,22 @@
+
+<!-- Contenedor general (espaciado vertical amplio entre secciones) -->
+<div class="w-full px-6 py-12 space-y-24">
+  <!-- =======================
+      Trends
+  ======================== -->
+  <section id="tendencias" class="scroll-mt-28">
+    <% partial(srcdir("apps", "TotalInflation", "views", "sections", "trends.jl.html"); context = @__MODULE__) %>
+  </section>
+  <!-- =======================
+      Bias 
+  ======================== -->
+  <section id="sesgo" class="scroll-mt-28">
+    <% partial(srcdir("apps", "TotalInflation", "views", "sections", "bias.jl.html"); context = @__MODULE__) %>
+  </section>
+  <!-- =======================
+      Composition 
+  ======================== -->
+  <section id="composicion" class="scroll-mt-28">
+    <% partial(srcdir("apps", "TotalInflation", "views", "sections", "composition.jl.html"); context = @__MODULE__) %>
+  </section>
+</div>
